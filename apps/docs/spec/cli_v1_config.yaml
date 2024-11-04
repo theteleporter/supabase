@@ -1013,6 +1013,28 @@ parameters:
     links:
       - name: 'Auth Server configuration'
         link: 'https://supabase.com/docs/reference/auth'
+  
+   - id: 'auth.mfa.web_authn.enroll_enabled'
+    title: 'auth.mfa.web_authn.enroll_enabled'
+    tags: ['auth', 'local']
+    required: false
+    default: 'false'
+    description: |
+      Enable WebAuthn enrollment for multi-factor authentication.
+    links:
+      - name: 'Auth Server configuration'
+        link: 'https://supabase.com/docs/reference/auth'
+
+  - id: 'auth.mfa.web_authn.verify_enabled'
+    title: 'auth.mfa.web_authn.verify_enabled'
+    tags: ['auth', 'local']
+    required: false
+    default: 'false'
+    description: |
+      Enable WebAuthn verification for multi-factor authentication.
+    links:
+      - name: 'Auth Server configuration'
+        link: 'https://supabase.com/docs/reference/auth'
 
   - id: 'functions.function_name.enabled'
     title: 'functions.<function_name>.enabled'
