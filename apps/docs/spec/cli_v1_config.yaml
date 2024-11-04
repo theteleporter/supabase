@@ -1077,6 +1077,20 @@ parameters:
       - name: '`supabase functions` CLI subcommands'
         link: 'https://supabase.com/docs/reference/cli/supabase-functions'
 
+  - id: 'functions.function_name.entrypoint'
+    title: 'functions.<function_name>.entrypoint'
+    tags: ['edge-functions']
+    required: false
+    description: |
+      Specify a custom entrypoint path for the function relative to the project root.
+      When not specified, defaults to `supabase/functions/<function_name>/index.ts`.
+    links:
+      - name: '`supabase functions` CLI subcommands'
+        link: 'https://supabase.com/docs/reference/cli/supabase-functions'
+    usage: |
+      [functions.my_function]
+      entrypoint = "path/to/custom/function.ts"
+
   - id: 'analytics.enabled'
     title: 'analytics.enabled'
     tags: ['analytics']
