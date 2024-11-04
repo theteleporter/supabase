@@ -146,6 +146,213 @@ parameters:
       - name: 'PostgreSQL configuration'
         link: 'https://postgrest.org/en/stable/configuration.html'
 
+  - id: 'db.settings.effective_cache_size'
+    title: 'db.settings.effective_cache_size'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the planner's assumption about the effective size of the disk cache.
+      This is a query planner parameter that doesn't affect actual memory allocation.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-EFFECTIVE-CACHE-SIZE'
+
+  - id: 'db.settings.logical_decoding_work_mem'
+    title: 'db.settings.logical_decoding_work_mem'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the amount of memory to be used by logical decoding, before writing data to local disk.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-LOGICAL-DECODING-WORK-MEM'
+
+  - id: 'db.settings.maintenance_work_mem'
+    title: 'db.settings.maintenance_work_mem'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the maximum amount of memory to be used by maintenance operations, such as VACUUM, CREATE INDEX, and ALTER TABLE ADD FOREIGN KEY.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM'
+
+  - id: 'db.settings.max_connections'
+    title: 'db.settings.max_connections'
+    tags: ['database']
+    required: false
+    description: |
+      Determines the maximum number of concurrent connections to the database server.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS'
+
+  - id: 'db.settings.max_locks_per_transaction'
+    title: 'db.settings.max_locks_per_transaction'
+    tags: ['database']
+    required: false
+    description: |
+      Controls the average number of object locks allocated for each transaction.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-locks.html#GUC-MAX-LOCKS-PER-TRANSACTION'
+
+  - id: 'db.settings.max_parallel_maintenance_workers'
+    title: 'db.settings.max_parallel_maintenance_workers'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum number of parallel workers that can be started by a single utility command.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PARALLEL-MAINTENANCE-WORKERS'
+
+  - id: 'db.settings.max_parallel_workers'
+    title: 'db.settings.max_parallel_workers'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum number of parallel workers that the system can support.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PARALLEL-WORKERS'
+
+  - id: 'db.settings.max_parallel_workers_per_gather'
+    title: 'db.settings.max_parallel_workers_per_gather'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum number of parallel workers that can be started by a single Gather or Gather Merge node.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PARALLEL-WORKERS-PER-GATHER'
+
+  - id: 'db.settings.max_replication_slots'
+    title: 'db.settings.max_replication_slots'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the maximum number of replication slots that the server can support.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-REPLICATION-SLOTS'
+
+  - id: 'db.settings.max_slot_wal_keep_size'
+    title: 'db.settings.max_slot_wal_keep_size'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the maximum size of WAL files that replication slots are allowed to retain in the pg_wal directory.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-SLOT-WAL-KEEP-SIZE'
+
+  - id: 'db.settings.max_standby_archive_delay'
+    title: 'db.settings.max_standby_archive_delay'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum delay before canceling queries when a hot standby server is processing archived WAL data.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-ARCHIVE-DELAY'
+
+  - id: 'db.settings.max_standby_streaming_delay'
+    title: 'db.settings.max_standby_streaming_delay'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum delay before canceling queries when a hot standby server is processing streamed WAL data.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-STREAMING-DELAY'
+
+  - id: 'db.settings.max_wal_size'
+    title: 'db.settings.max_wal_size'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the maximum size of WAL files that the system will keep in the pg_wal directory.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-MAX-WAL-SIZE'
+
+  - id: 'db.settings.max_wal_senders'
+    title: 'db.settings.max_wal_senders'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the maximum number of concurrent connections from standby servers or streaming base backup clients.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-WAL-SENDERS'
+
+  - id: 'db.settings.session_replication_role'
+    title: 'db.settings.session_replication_role'
+    tags: ['database']
+    required: false
+    description: |
+      Controls whether triggers and rewrite rules are enabled. Valid values are: "origin", "replica", or "local".
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SESSION-REPLICATION-ROLE'
+
+  - id: 'db.settings.shared_buffers'
+    title: 'db.settings.shared_buffers'
+    tags: ['database']
+    required: false
+    description: |
+      Sets the amount of memory the database server uses for shared memory buffers.
+      Note: Changing this parameter requires a database restart.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS'
+
+  - id: 'db.settings.statement_timeout'
+    title: 'db.settings.statement_timeout'
+    tags: ['database']
+    required: false
+    description: |
+      Abort any statement that takes more than the specified amount of time.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-STATEMENT-TIMEOUT'
+
+  - id: 'db.settings.wal_keep_size'
+    title: 'db.settings.wal_keep_size'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the minimum size of past log file segments kept in the pg_wal directory.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-WAL-KEEP-SIZE'
+
+  - id: 'db.settings.wal_sender_timeout'
+    title: 'db.settings.wal_sender_timeout'
+    tags: ['database']
+    required: false
+    description: |
+      Terminate replication connections that are inactive for longer than this amount of time.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-WAL-SENDER-TIMEOUT'
+
+  - id: 'db.settings.work_mem'
+    title: 'db.settings.work_mem'
+    tags: ['database']
+    required: false
+    description: |
+      Specifies the amount of memory to be used by internal sort operations and hash tables before writing to temporary disk files.
+    links:
+      - name: 'PostgreSQL configuration'
+        link: 'https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-WORK-MEM'
+
   - id: 'db.pooler.enabled'
     title: 'db.pooler.enabled'
     tags: ['database']
