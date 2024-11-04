@@ -44,6 +44,9 @@ info:
     - id: analytics
       title: Analytics
       description: Analytics settings.
+    - id: branching
+      title: Branching
+      description: Branching related settings.
     - id: local
       title: Local Development
       description: Local Development settings.
@@ -148,7 +151,7 @@ parameters:
 
   - id: 'db.settings.effective_cache_size'
     title: 'db.settings.effective_cache_size'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the planner's assumption about the effective size of the disk cache.
@@ -159,7 +162,7 @@ parameters:
 
   - id: 'db.settings.logical_decoding_work_mem'
     title: 'db.settings.logical_decoding_work_mem'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the amount of memory to be used by logical decoding, before writing data to local disk.
@@ -169,7 +172,7 @@ parameters:
 
   - id: 'db.settings.maintenance_work_mem'
     title: 'db.settings.maintenance_work_mem'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the maximum amount of memory to be used by maintenance operations, such as VACUUM, CREATE INDEX, and ALTER TABLE ADD FOREIGN KEY.
@@ -179,7 +182,7 @@ parameters:
 
   - id: 'db.settings.max_connections'
     title: 'db.settings.max_connections'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Determines the maximum number of concurrent connections to the database server.
@@ -190,7 +193,7 @@ parameters:
 
   - id: 'db.settings.max_locks_per_transaction'
     title: 'db.settings.max_locks_per_transaction'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Controls the average number of object locks allocated for each transaction.
@@ -201,7 +204,7 @@ parameters:
 
   - id: 'db.settings.max_parallel_maintenance_workers'
     title: 'db.settings.max_parallel_maintenance_workers'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum number of parallel workers that can be started by a single utility command.
@@ -211,7 +214,7 @@ parameters:
 
   - id: 'db.settings.max_parallel_workers'
     title: 'db.settings.max_parallel_workers'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum number of parallel workers that the system can support.
@@ -222,7 +225,7 @@ parameters:
 
   - id: 'db.settings.max_parallel_workers_per_gather'
     title: 'db.settings.max_parallel_workers_per_gather'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum number of parallel workers that can be started by a single Gather or Gather Merge node.
@@ -232,7 +235,7 @@ parameters:
 
   - id: 'db.settings.max_replication_slots'
     title: 'db.settings.max_replication_slots'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the maximum number of replication slots that the server can support.
@@ -243,7 +246,7 @@ parameters:
 
   - id: 'db.settings.max_slot_wal_keep_size'
     title: 'db.settings.max_slot_wal_keep_size'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the maximum size of WAL files that replication slots are allowed to retain in the pg_wal directory.
@@ -253,7 +256,7 @@ parameters:
 
   - id: 'db.settings.max_standby_archive_delay'
     title: 'db.settings.max_standby_archive_delay'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum delay before canceling queries when a hot standby server is processing archived WAL data.
@@ -263,7 +266,7 @@ parameters:
 
   - id: 'db.settings.max_standby_streaming_delay'
     title: 'db.settings.max_standby_streaming_delay'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum delay before canceling queries when a hot standby server is processing streamed WAL data.
@@ -273,7 +276,7 @@ parameters:
 
   - id: 'db.settings.max_wal_size'
     title: 'db.settings.max_wal_size'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the maximum size of WAL files that the system will keep in the pg_wal directory.
@@ -283,7 +286,7 @@ parameters:
 
   - id: 'db.settings.max_wal_senders'
     title: 'db.settings.max_wal_senders'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the maximum number of concurrent connections from standby servers or streaming base backup clients.
@@ -294,7 +297,7 @@ parameters:
 
   - id: 'db.settings.session_replication_role'
     title: 'db.settings.session_replication_role'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Controls whether triggers and rewrite rules are enabled. Valid values are: "origin", "replica", or "local".
@@ -304,7 +307,7 @@ parameters:
 
   - id: 'db.settings.shared_buffers'
     title: 'db.settings.shared_buffers'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Sets the amount of memory the database server uses for shared memory buffers.
@@ -315,7 +318,7 @@ parameters:
 
   - id: 'db.settings.statement_timeout'
     title: 'db.settings.statement_timeout'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Abort any statement that takes more than the specified amount of time.
@@ -325,7 +328,7 @@ parameters:
 
   - id: 'db.settings.wal_keep_size'
     title: 'db.settings.wal_keep_size'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the minimum size of past log file segments kept in the pg_wal directory.
@@ -335,7 +338,7 @@ parameters:
 
   - id: 'db.settings.wal_sender_timeout'
     title: 'db.settings.wal_sender_timeout'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Terminate replication connections that are inactive for longer than this amount of time.
@@ -345,7 +348,7 @@ parameters:
 
   - id: 'db.settings.work_mem'
     title: 'db.settings.work_mem'
-    tags: ['database']
+    tags: ['database', 'local', 'branching']
     required: false
     description: |
       Specifies the amount of memory to be used by internal sort operations and hash tables before writing to temporary disk files.
@@ -1070,3 +1073,13 @@ parameters:
     links:
       - name: Self-hosted Logflare Configuration
         link: https://supabase.com/docs/reference/self-hosting-analytics/list-endpoints#getting-started
+
+  - id: 'experimental.webhooks.enabled'
+    title: 'experimental.webhooks.enabled'
+    tags: ['branching']
+    required: false
+    default: 'false'
+    description: |
+      Automatically enable webhook features on each new created branch
+      Note: This is an experimental feature and may change in future releases.
+    links: []
