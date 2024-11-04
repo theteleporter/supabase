@@ -673,6 +673,30 @@ parameters:
       - name: 'Auth Server configuration'
         link: 'https://supabase.com/docs/reference/auth'
 
+  - id: 'auth.email.otp_length'
+    title: 'auth.email.otp_length'
+    tags: ['auth']
+    required: false
+    default: '6'
+    description: |
+      The length of the OTP code to be sent in emails.
+      Must be between 6 and 10 digits.
+    links:
+      - name: 'Auth Server configuration'
+        link: 'https://supabase.com/docs/reference/auth'
+
+  - id: 'auth.email.otp_exp'
+    title: 'auth.email.otp_exp'
+    tags: ['auth']
+    required: false
+    default: '300'
+    description: |
+      The expiry time for an OTP code in seconds.
+      Default is 300 seconds (5 minutes).
+    links:
+      - name: 'Auth Server configuration'
+        link: 'https://supabase.com/docs/reference/auth'
+
   - id: 'auth.email.smtp.host'
     title: 'auth.email.smtp.host'
     tags: ['auth']
