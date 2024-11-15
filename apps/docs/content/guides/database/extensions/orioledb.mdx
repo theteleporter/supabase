@@ -1,0 +1,146 @@
+---
+id: 'orioledb'
+title: 'OrioleDB: a cloud-native storage engine for PostgreSQL'
+description: "A storage extension for PostgreSQL which uses PostgreSQL's pluggable storage system"
+---
+
+[OrioleDB](https://www.orioledb.com/) is a storage engine for PostgreSQL designed to enhance scalability and performance. It leverages PostgreSQL's pluggable storage system, enabling developers to select a storage method suited to specific requirements.
+
+OrioleDB requires patches to PostgreSQL's pluggable storage API and other subsystems.
+
+OrioleDB is in active development and currently has [certain limitations](https://www.orioledb.com/docs/usage/getting-started#current-limitations).
+
+## Concepts
+
+### Index-organized tables
+
+OrioleDB uses index-organized tables, where table data is stored in the index structure. This design eliminates the need for separate heap storage, reduces overhead and improves lookup performance for primary key queries.
+
+### No buffer mapping
+
+In-memory pages are connected to the storage pages using direct links. This allows OrioleDB to bypass PostgreSQL's shared buffer pool and eliminate the associated complexity and contention in buffer mapping.
+
+### Undo log
+
+Multi-Version Concurrency Control (MVCC) is implemented using UNDO log. The UNDO log stores previous row versions and transaction information, which enables consistent reads while reducing the need for table vacuuming and minimizing bloat in most cases.
+
+### Copy-on-write checkpoints
+
+OrioleDB implements copy-on-write checkpoints to persist data efficiently. This approach writes only modified data during a checkpoint, reducing the I/O overhead compared to traditional PostgreSQL checkpointing and allowing row-level WAL logging.
+
+### Decoupled storage and compute
+
+OrioleDB has experimental support for separating the storage and compute layers. This decoupling allows storage to scale independently of compute resources and enables more flexible resource allocation. This architecture is particularly suited for cloud environments, where storage and compute resources are often provisioned separately.
+
+## Usage
+
+### Enable the extension
+
+You can get started with OrioleDB by enabling the extension in your Supabase dashboard.
+
+<Tabs
+  scrollable
+  size="small"
+  type="underlined"
+  defaultActiveId="dashboard"
+  queryGroup="database-method"
+>
+<TabPanel id="dashboard" label="Dashboard">
+
+1. Go to the [Database](https://supabase.com/dashboard/project/_/database/tables) page in the Dashboard.
+2. Click on **Extensions** in the sidebar.
+3. Search for "orioledb" and enable the extension.
+
+</TabPanel>
+<TabPanel id="sql" label="SQL">
+
+```sql
+-- Example: enable the "orioledb" extension
+create extension orioledb with schema extensions;
+
+-- Example: disable the "orioledb" extension
+drop extension if exists orioledb;
+```
+
+</TabPanel>
+</Tabs>
+
+### Configuration
+
+OrioleDB can be configured by [GUC parameters](https://www.orioledb.com/docs/usage/configuration).
+
+### Creating tables
+
+To create a table using the OrioleDB storage engine, include the clause `USING orioledb` in the `CREATE TABLE` statement. For example:
+
+```sql
+-- Create a table
+create table blog_post (
+  id int8 not null,
+  title text not null,
+  body text not null,
+  author text not null,
+  published_at timestamptz not null default CURRENT_TIMESTAMP,
+  views bigint not null,
+  primary key (id)
+)
+using orioledb;
+-- Define the storage engine
+```
+
+### Creating indexes
+
+OrioleDB tables always have a primary key. If it wasn't defined explicitly, a hidden primary key is created using the `ctid` column.
+Additionally you can create secondary indexes.
+
+```sql
+-- Create an index
+create index blog_post_published_at on blog_post (published_at);
+
+create index blog_post_views on blog_post (views) where (views > 1000);
+```
+
+### Data manipulation
+
+You can query and modify data in OrioleDB tables using standard DML statements, including `SELECT`, `INSERT`, `UPDATE`, `DELETE` and `INSERT ... ON CONFLICT`.
+
+```sql
+INSERT INTO blog_post (id, title, body, author, views)
+VALUES (1, 'Hello, World!', 'This is my first blog post.', 'John Doe', 1000);
+
+SELECT * FROM blog_post ORDER BY published_at DESC LIMIT 10;
+ id │     title     │            body             │  author  │         published_at          │ views
+────┼───────────────┼─────────────────────────────┼──────────┼───────────────────────────────┼───────
+  1 │ Hello, World! │ This is my first blog post. │ John Doe │ 2024-11-15 12:04:18.756824+01 │  1000
+```
+
+### Viewing query plans
+
+You can see the execution plan using standard `EXPLAIN` statement.
+
+```sql
+EXPLAIN SELECT * FROM blog_post ORDER BY published_at DESC LIMIT 10;
+                                                 QUERY PLAN
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Limit  (cost=0.15..1.67 rows=10 width=120)
+   ->  Index Scan Backward using blog_post_published_at on blog_post  (cost=0.15..48.95 rows=320 width=120)
+
+EXPLAIN SELECT * FROM blog_post WHERE id = 1;
+                                    QUERY PLAN
+──────────────────────────────────────────────────────────────────────────────────
+ Index Scan using blog_post_pkey on blog_post  (cost=0.15..8.17 rows=1 width=120)
+   Index Cond: (id = 1)
+
+EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM blog_post ORDER BY published_at DESC LIMIT 10;
+                                                                      QUERY PLAN
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Limit  (cost=0.15..1.67 rows=10 width=120) (actual time=0.052..0.054 rows=1 loops=1)
+   ->  Index Scan Backward using blog_post_published_at on blog_post  (cost=0.15..48.95 rows=320 width=120) (actual time=0.050..0.052 rows=1 loops=1)
+ Planning Time: 0.186 ms
+ Execution Time: 0.088 ms
+```
+
+## Resources
+
+- [Official OrioleDB documentation](https://www.orioledb.com/docs)
+- [OrioleDB GitHub repository](https://github.com/orioledb/orioledb)
